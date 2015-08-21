@@ -10,7 +10,8 @@
     "changelist": "github-changes -o apiaryio -r dredd --only-pulls --use-commit-body --file CHANGELOG-Generated.md -a",
     "pretest": "coffeelint ./src",
     "test": "scripts/test",
-    "prepublish": "scripts/prepublish"
+    "prepublish": "scripts/prepublish",
+    "postinstall": "scripts/build"
   },
   "repository": {
     "type": "git",
