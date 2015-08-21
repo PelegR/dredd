@@ -33,7 +33,7 @@ applyConfiguration = (config) ->
       header: null
       user: null
       'inline-errors':false
-      details: false
+      details: ['fail']
       method: []
       only: []
       color: true

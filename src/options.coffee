@@ -90,8 +90,8 @@ options =
 
   details:
     alias: "d"
-    description: "Determines whether request/response details are included in passing tests.\n"
-    default: false
+    description: "Determines whether request/response details are included in passing or failing tests.\n"
+    default: ['fail']
 
   method:
     alias: "m"

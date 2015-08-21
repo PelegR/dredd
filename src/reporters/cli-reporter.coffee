@@ -22,9 +22,12 @@ class CliReporter
         for test in @errors
           logger.fail test.title + " duration: #{test.duration}ms"
           logger.fail test.message
-          logger.request "\n" + prettifyResponse(test.request) + "\n" if test.request
-          logger.expected "\n" + prettifyResponse(test.expected) + "\n" if test.expected
-          logger.actual "\n" + prettifyResponse(test.actual) + "\n\n" if test.actual
+
+          if !!~@details.indexOf('fail')
+            logger.request "\n" + prettifyResponse(test.request) + "\n" if test.request
+            logger.expected "\n" + prettifyResponse(test.expected) + "\n" if test.expected
+            logger.actual "\n" + prettifyResponse(test.actual) + "\n\n" if test.actual
+
       if @stats.tests > 0
         logger.complete "#{@stats.passes} passing, " +
           "#{@stats.failures} failing, " +
@@ -37,7 +40,7 @@ class CliReporter
 
     emitter.on 'test pass', (test) =>
       logger.pass test.title + " duration: #{test.duration}ms"
-      if @details
+      if !!~@details.indexOf('pass')
         logger.request "\n" + prettifyResponse(test.request) + "\n"
         logger.expected "\n" + prettifyResponse(test.expected) + "\n"
         logger.actual "\n" + prettifyResponse(test.actual) + "\n\n"
